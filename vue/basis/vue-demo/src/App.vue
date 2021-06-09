@@ -10,7 +10,10 @@
     <!-- <ListDemo /> -->
     <!-- <EventDemo /> -->
     <!-- <FormDemo /> -->
-    <ComponentsDemo />
+    <!-- <ComponentsDemo v-if="show"/> -->
+    <!-- <button @click="destroy">销毁</button> -->
+    <!-- <AdvancedUse /> -->
+    <AdvancedUse />
   </div>
 </template>
 
@@ -23,10 +26,17 @@
 // import ListDemo from './components/BaseUse/ListDemo.vue'
 // import EventDemo from './components/BaseUse/EventDemo.vue'
 // import FormDemo from './components/BaseUse/FormDemo.vue'
-import ComponentsDemo from './components/ComponentsDemo'
+// import ComponentsDemo from './components/ComponentsDemo'
+import AdvancedUse from './components/AdvancedUse'
+// import NextTick from './components/AdvancedUse/NextTick.vue'
 
 export default {
   name: 'App',
+  // data(){
+  //   return{
+  //     show: true
+  //   }
+  // },
   components: {
     // TplDemo,
     // ComputedDemo,
@@ -35,8 +45,15 @@ export default {
     // ListDemo
     // EventDemo
     // FormDemo
-    ComponentsDemo
-  }
+    // ComponentsDemo
+    AdvancedUse
+    // NextTick
+  },
+  // methods:{
+  //   destroy(){
+  //     this.show = true
+  //   }
+  // }
 }
 </script>
 

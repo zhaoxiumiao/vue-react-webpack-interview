@@ -59,7 +59,11 @@ export default {
     },
     beforeDestroy() {
         // 及时销毁，否则可能造成内存泄露
+        console.log('list destroy');
         event.$off('onAddTitle', this.addTitleHandler)
+    },
+    destroyed(){
+        console.log('list destroyed');
     }
 }
 </script>

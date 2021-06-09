@@ -55,5 +55,11 @@ export default {
         // eslint-disable-next-line
         console.log('index updated')
     },
+    beforeDestroy(){
+        console.log('index destroy');
+    },
+    destroyed(){
+        console.log('index destroyed');
+    }
 }
 </script>
