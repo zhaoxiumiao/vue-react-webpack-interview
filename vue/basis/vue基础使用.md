@@ -133,4 +133,49 @@
 Vuex 使用
    - 面试考点不多(因为熟悉Vue之后, vuex没有难度)
    - 基本概念 基本使用和API必须掌握
+     - state
+     - getters
+     - mutations
+     - actions
    - 可能会考察 state 的数据结构设计(后面会讲)
+   - 用于Vue组件
+     - dispatch 派发Action
+     - commit 提交commit
+     - 辅助函数
+       - ...mapState({})
+       - mapGetters
+       - mapActions
+       - mapMutations
+     - 一些考点
+       - 只有Action 中可以写异步操作
+### Vue-router 使用
+   - 面试考点不多(前提是熟悉Vue)
+   - 路由模式(hash/H5 history)
+     - hash模式(默认), 如http://abc.com/#/user/10
+     - H5 history模式, 如http://abc.com/user/20
+     - 后者需要server 端支持, 因此无特殊需求可选择前者
+   - 路由配置（动态路由 懒加载）
+     - 动态路由
+       - `/user/:id`
+     - 懒加载
+       - 使用() => import()进行路由加载
+### 组件化基础
+   - "很久以前"就有组件化
+     - asp jsp php 已经有组件化了
+     - nodejs 中也有类似的组件化
+     - Vue React组件化
+   - 数据驱动视图(MVVM, setState)
+     - 传统组件, 只是静态渲染，更新还要依赖于操作DOM
+     - 数据驱动视图-Vue MVVM
+       - M:数据
+       - V:视图
+       - VM:vue干的事来连接V M
+     - 数据驱动视图- React setState(暂时按下不表)
+
+### Vue 面试题
+   - v-show 和 v-if 的区别
+   - 为何 v-for 中要用key
+   - 描述Vue 组件生命周期(有父子组件的情况)
+   - Vue 组件如何通讯
+   - 描述组件渲染和更新的过程
+   - 双向数据绑定v-model 的实现原理
