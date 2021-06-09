@@ -8,7 +8,9 @@
     <WatchDemo /> -->
     <!-- <ConditionDemo /> -->
     <!-- <ListDemo /> -->
-    <EventDemo />
+    <!-- <EventDemo /> -->
+    <!-- <FormDemo /> -->
+    <ComponentsDemo />
   </div>
 </template>
 
@@ -19,7 +21,9 @@
 // import WatchDemo from './components/BaseUse/WatchDemo.vue'
 // import ConditionDemo from './components/BaseUse/ConditionDemo.vue'
 // import ListDemo from './components/BaseUse/ListDemo.vue'
-import EventDemo from './components/BaseUse/EventDemo.vue'
+// import EventDemo from './components/BaseUse/EventDemo.vue'
+// import FormDemo from './components/BaseUse/FormDemo.vue'
+import ComponentsDemo from './components/ComponentsDemo'
 
 export default {
   name: 'App',
@@ -29,7 +33,9 @@ export default {
     // WatchDemo,
     // ConditionDemo
     // ListDemo
-    EventDemo
+    // EventDemo
+    // FormDemo
+    ComponentsDemo
   }
 }
 </script>

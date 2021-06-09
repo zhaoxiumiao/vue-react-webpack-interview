@@ -55,3 +55,27 @@
    - v-model
    - 常见表单项 textarea checkbox radio select
    - 修饰符 lazy number trim 
+### Vue组件使用
+   -  props 和 $emit
+      -  props两种写法 `[]` 以及对象 `{}`
+      -  $emit 用来触发父组件传来的一个事件
+   -  组件间通讯 - 自定义事件
+      -  自定义事件就是通过 new Vue() 进行兄弟组件通讯 
+   -  组件生命周期
+      -  挂载阶段
+         -  beforeCreate
+         -  created
+            -  vue实例初始化完毕
+         -  beforeMount
+         -  mounted  
+            -  vue页面已经渲染完毕
+      -  更新阶段
+         -  beforeUpdate
+         -  updated  
+      -  销毁阶段
+         -  beforeDestroy
+            -  解除绑定
+            -  销毁子组件以及事件监听器
+         -  destroyed
+      - 初始化实例时 是由父组件到子组件的这个顺序
+      - 渲染时时由内到外，先渲染子组件再渲染父组件
