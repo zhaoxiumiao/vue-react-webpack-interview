@@ -71,3 +71,22 @@
      - tag不相同, 则直接删掉重建, 不再深度比较
      - tag和key, 两者都相同, 则认为是相同节点, 不再深度比较
    - snabbdom - 源码解读
+   - diff 算法总结
+     - patchVnode
+     - addVnodes removeVnodes
+     - updateChildren (key 的重要性)
+   - vdom 和 diff - 总结
+     - 细节不重要， updateChildren 的过程不重要， 不要深究
+     - vdom核心概念很重要: h vnode patch diff key 等
+     - vdom 存在的价值更重要: 数据驱动视图，控制DOM操作
+### 模板编译 
+   - 模板事vue开发中最常用的部分， 即与使用相关联的原理
+   - 它不是html, 有指令 插值 js表达式， 到底是什么
+   - 面试不会直接问，但会通过"组件渲染和更新过程" 考察
+   - JS的with语法
+     - 改变{}内自由变量的查找规则，当做obj属性来查找
+     - 如果找不到匹配的obj属性, 就会报错
+     - with 要慎用，它打破了作用域规则，易读性变差
+   - vue template complier 将模板编译为render函数
+   - 执行render函数生成vnode
+   - 
