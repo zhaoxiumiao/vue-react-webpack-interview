@@ -29,6 +29,8 @@
         <button @click="showFormDemo = true"> show form demo</button> -->
         <!-- <KeepAlive /> -->
         <MixinDemo />
+        <button @click="testChange">实验</button>
+        <div @click="del">{{newsData.test}}</div>
     </div>
 </template>
 
@@ -76,6 +78,14 @@ export default {
     methods:{
         change(){
             this.name = 'fool'
+        },
+        testChange(){
+            this.$set(this.newsData,'test',3)
+            // this.$delete(this.newsData, 'test')
+            // console.log(this);
+        },
+        del(){
+            this.$delete(this.newsData, 'test')
         }
     }
 }
