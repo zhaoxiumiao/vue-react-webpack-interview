@@ -89,4 +89,69 @@
      - with 要慎用，它打破了作用域规则，易读性变差
    - vue template complier 将模板编译为render函数
    - 执行render函数生成vnode
-   - 
+### vue 组件使用render 代替template
+   - 学完模板编译, 再讲这个render , 就比较好理解
+   - 有些复杂情况中, 不能用template, 可以考虑用render
+   - React一直都用render(没有模板), 和这里一样
+### 组件 渲染/更新 过程 
+   - 一个组件渲染到页面, 修改data触发更新(数据驱动视图)
+   - 其背后原理是什么, 需要掌握哪些要点?
+   - 考察对流程了解的全面程度
+   - 过程
+     - 初次渲染过程
+       - 解析模板为render函数(或在开发环境已完成, vue-loader)
+       - 触发响应式, 监听data属性 getter setter
+       - 执行render函数, 生成vnode , patch(elem:节点, vnode)
+     - 更新过程
+       - 修改data, 触发setter(此前在getter 中已被监听)
+       - 重新执行render函数 , 生成newVnode
+       - patch(vnode, newVnode)
+     - 异步渲染
+       - 回顾$nextTick
+       - 汇总data的修改, 一次性更新视图
+       - 减少DOM操作次数, 提高性能
+     - 总结
+       - 渲染和响应式的关系
+       - 渲染和模板编译的关系
+       - 渲染和vdom的关系
+       - 初次渲染过程
+       - 更新过程
+       - 异步渲染
+### 前端路由原理
+   - 稍微复杂一点的SPA, 都需要路由
+   - vue-router 也是vue全家桶的标配之一
+   - 属于"和日常使用相关联的原理", 面试常考
+   - 回顾 vue-router 的路由模式
+   - hash
+   - H5 history
+   - 网页url组成部分
+   - http://127.0.0.1:8881/01-hash.html?a=100&b=20#/aaa/bbb 
+     - location.protocol http:
+     - location.hostname 127.0.0.1
+     - location.host 127.0.0.1:8881
+     - location.port 8881
+     - location.pathname /01-hash.html
+     - location.search ?a=100&b=20
+     - location.hash #/aaa/bbb
+   - hash 变化会触发网页跳转, 及浏览器的前进 后退
+   - hash 变化不会刷新页面, SPA必须的特点
+   - hash永远不会提交到server端(前端自生自灭)
+   - H5 history
+     - 用url 规范的路由,但跳转时不刷新页面
+     - history.pushState
+     - window.onpopstate
+   - 改造成H5 history 模式
+     - https://github.com/xxx 刷新页面
+     - https://github.com/xxx/yyy 前端跳转, 不刷新页面
+     - https://github.com/xxx/yyy/zzz 前端跳转, 不刷新页面
+   - 两者选择
+     - to B 的系统推荐使用hash , 简单易用, 对url 规范不敏感
+     - to C 的系统, 可以考虑选择 H5 history, 但需要服务端支持
+     - 能简单就别复杂, 考虑成本和收益
+### Vue 原理 - 总结
+   - 组件化
+   - 响应式
+   - vdom和diff
+   - 模板编译
+   - 渲染过程
+   - 前端路由
