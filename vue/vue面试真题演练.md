@@ -80,7 +80,54 @@
    - 解除自定义的DOM事件, 如window scroll等
    - 三者不做都有可能造成内存泄漏
 ### 什么是作用域插槽
-
-
+   - 可以在父组件直接使用子组件中的data数据
+### Vuex中 action 和 mutation 有何区别
+   - action 中处理异步, mutation不可以
+   - mutation 做原子操作
+   - action 可以整合多个mutation
+### Vue-router 常用的路由模式
+   - hash 默认
+   - H5 history(需要服务端支持)
+### 如何配置Vue-router 异步加载
+   - component: () => import()
+### 请用 vnode 描述一个DOM结构
+   - 重点: tag props children
+### 监听data 变化的核心API是什么
+   - Object.defineProperty
+   - 以及深度监听 监听数组
+   - 有何缺点
+### Vue 如何监听数组变化
+   - Object.defineProperty 不能监听数组变化
+   - 重新定义原型，重写push pop 等方法, 实现监听
+   - Proxy 可以原生支持监听数组变化
+### 描述响应式原理
+   - 监听data变化
+   - 组件渲染和更新的流程
+### diff 算法的时间复杂度
+   - O(n)
+   - 在O(n^3) 基础上做了一些调整
+     - 同层比较
+     - 如果tag不同就删掉重建
+     - 如果tag和key都相同就不进行重复比较
+### 简述diff算法过程
+   - patch(elem, vnode) 和 patch(vnode, newVnode)
+   - patchVnode 和 addVnodes 和 removeVnodes
+   - updateChildren (key的重要性)
+### Vue 为何是异步渲染, $nextTick何用?
+   - 异步渲染（以及合并data修改）, 以提高渲染性能
+   - $nextTick 在DOM 更新完之后，触发回调
+### Vue 常见性能优化方式
+   - 合理使用v-show 和 v-if
+   - 合理使用 computed
+   - v-for 时加key , 以及避免和 v-if 同时使用
+   - 自定义事件 DOM事件及时销毁
+   - 合理使用异步组件
+   - 合理使用keep-alive
+   - data层级不要太深
+   - 使用 vue-loader 在开发环境做模板编译（预编译）
+   - 合理使用keep-alive
+   - 图片懒加载
+   - webpack 层面的优化(后面讲)
+   - 使用SSR
 
 
