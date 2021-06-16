@@ -17,7 +17,7 @@ const print = (info) => {
 print('hello webpack 5')
 
 import { sum } from './math'
-const sumRes = sum(10, 20)
+const sumRes = sum(10, 2)
 console.log('sumRes', sumRes)
 
 // 引入图片
@@ -39,4 +39,11 @@ setTimeout(()=>{
         console.log(res.default.message);
     })
 }, 1500)
+
+if(module.hot){ //热更新
+    module.hot.accept(['./math'], ()=>{
+        const sumRes = sum(10, 30)
+        console.log('sumRes in hot', sumRes);
+    })
+}
 

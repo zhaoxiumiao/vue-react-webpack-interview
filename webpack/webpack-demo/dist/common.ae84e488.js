@@ -1,0 +1,1 @@
+(self.webpackChunkwebpack5_demo=self.webpackChunkwebpack5_demo||[]).push([[592],{5454:(e,c,k)=>{"use strict";k.d(c,{S:()=>s});const s=(e,c)=>e+c}}]);

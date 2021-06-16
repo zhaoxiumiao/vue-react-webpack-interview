@@ -8,12 +8,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const HappyPack = require('happypack')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin')
 
 module.exports = merge(webpackCommonConf,{
     mode: 'production',
+    entry: {
+        index: path.join(srcPath, 'index'),
+        other: path.join(srcPath, 'other')
+    },
     output:{
         filename:'[name].[contenthash:8].js',
-        path: distPath
+        path: distPath,
+        // publicPath: 'http://cdn.abc.com' //修改所有静态文件 url
     },
     module:{
         rules:[
@@ -30,7 +37,8 @@ module.exports = merge(webpackCommonConf,{
                     options:{
                         limit: 5 * 1024,
 
-                        outputPath: '/img1/'
+                        outputPath: '/img1/',
+                        // publicPath: 'http://cdn.abc.com'
                     }
                 }
             },
@@ -54,6 +62,9 @@ module.exports = merge(webpackCommonConf,{
             }
         ]
     },
+    resolve: {
+        mainFields: ['jsnext:main', 'browser', 'main']
+    },
     plugins:[
         new CleanWebpackPlugin(), // 默认清空output.path 文件夹
         new webpack.DefinePlugin({
@@ -70,7 +81,21 @@ module.exports = merge(webpackCommonConf,{
         new HappyPack({
             id: 'babel',
             loaders: ['babel-loader?cacheDirectory']
-        })
+        }),
+        new ParallelUglifyPlugin({
+            uglifyJS: {
+                output:{
+                    beautify: false,
+                    comments: false,
+                },
+                compress:{
+                    drop_console: true,
+                    collapse_vars: true,
+                    reduce_vars: true
+                }
+            }
+        }),
+        new ModuleConcatenationPlugin() //Scope Hosting
     ],
     optimization:{
         //压缩css

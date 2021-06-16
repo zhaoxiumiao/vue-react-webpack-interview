@@ -32,17 +32,100 @@
      - webpack 内置Uglify 工具压缩 JS
      - JS单线程，开启多线程压缩更快
      - 和happyPack 同理
+   - 自动刷新
+   - 热更新
+     - 新代码生效, 网页不刷新, 状态不丢失
+   - DllPlugin 动态链接库插件
+     - 为了解决一下避免比较大的库重复打包
+     - webpack 以内置 DllPlugin 支持
+     - DllPlugin - 打包出 dll 文件
+     - DllReferencePlugin - 使用 dll 文件
+   - 总结
+     - 可用于生产环境的
+       - 优化 babel-loader 
+         - cacheDirectory 开启缓存
+       - IgnorePlugin
+         - 忽略一下文件
+       - noParse 避免重复打包
+       - happyPack 开启多进程打包
+       - ParallelUglifyPlugin 多进程压缩JS
+     - 不可用于生产环境的
+       - 自动刷新
+       - 热更新
+       - DllPlugin 提高开发环境的体验
+### 关于开启多进程
+   - 项目较大,打包较慢, 开启多进程能提高速度
+   - 项目较小,打包很快, 开启多进程会降低速度(进程开销)
+   - 按需使用
 ### 优化产出代码 - 产品性能
+   - 小图片 base64编码
+   - bundle 加 hash `contenthash`
+   - 懒加载
+   - 提取公共代码
+   - IngorePlugin 忽略一下无用的引用
+   - 使用CDN加速
+   - 使用 production
+     - 自动开启代码压缩
+     - Vue React 等会自动删除调试代码(如开发环境的warning)
+     - 启动Tree-Shaking
+       - 一些引入但没有用过的代码, 会被忽略
+       - production 模式下自动开启
+       - 必须使用ES6 Module 才能生效
+   - Scope Hosting
+     - 多个函数合并成一个
+     - 代码体积小
+     - 创建函数作用域更少
+     - 代码阅读性更好
+### ES6 Module 和 Commonjs 区别
+   - ES6 Module 静态引用, 编译时引入
+   - Commonjs 动态引入, 执行时引入
+   - 只有ES6Module 才能静态分析 实现 Tree-Shaking
 ### 构建流程概述
 ### babel
+   - 环境搭建&基本配置
+     - 环境搭建
+     - .babelrc配置
+     - presets和plugins
+   - babel-polyfill
+     - 什么是Polyfill
+     - core.js 和 regenerator
+     - babel-polyfill 即两者的集合
+     - babel 只编译语法不关心api不管模块化
+     - 配置按需引入
+   - babel-runtime
+     - babel-polyfill 会有污染
+     - babel-runtime 会重新取一个变量不会污染全局
 ### 面试题
    - 前端代码为何要进行构建和打包？
+     - 体积更小(Tree-Shaking 压缩 合并) 加载更快
+     - 编译高级语言或语法(TS, ES6+ 模块化 scss)
+     - 兼容性和错误检查(Polyfill postcss eslint)
+     - 统一高效的开发环境
+     - 统一的构建流程和产出标准
+     - 集成公司构建规范(提测 上线等)
    - module chunk bundle 分别什么意思, 有何区别？
      - module - 各个源码文件，webpack 中一切皆模块
      - chunk - 多模块合并成的, 如entry import() splitChunk
      - bundle - 最终的输出文件
    - loader 和 plugin 的区别?
+     - loader 模块转换器, 如less -> css
+     - plugin 扩展插件, 如HtmlWebpackPlugin
+   - babel 和 webpack 的区别
+     - babel -JS 新语法编译工具, 不关心模块化
+     - webpack - 打包构建工具, 是多个loader plugin 的集合
+   - 如何产出一个 lib
+     - bar
    - webpack 如何实现懒加载？
+     - import()
+     - 结合 Vue React 异步组件
+     - 异步加载路由
+   - 为何Proxy 不能被Polyfill?
+     - 如Class 可以用function 模拟
+     - 如Promise 可以用 callback 来模拟
+     - 但是Proxy 的功能用 Object.defineProperty 无法模拟
    - webpack 常见性能优化
    - babel-runtime 和 babel-polyfill 的区别
+     - babel-polyfill 会污染全局
+     - babel-runtime 不会污染全局
+     - 产出第三方lib要用babel-runtime
    - (模块化)

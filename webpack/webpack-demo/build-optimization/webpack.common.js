@@ -3,10 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { srcPath } = require('./paths')
 
 module.exports = {
-    entry: {
-        index: path.join(srcPath, 'index'),
-        other: path.join(srcPath, 'other')
-    },
     module:{
         noParse:[/react\.min\.js$/],
         rules:[
